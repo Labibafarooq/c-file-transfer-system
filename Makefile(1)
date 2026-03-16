@@ -1,0 +1,16 @@
+COMPILER = gcc
+COMPILE_FLAGS = -Wall -g
+
+all: file_transfer
+
+file_transfer: main.o file_transfer.o
+	$(COMPILER) $(COMPILE_FLAGS) -o file_transfer main.o file_transfer.o
+
+main.o: main.c file_transfer.h
+	$(COMPILER) $(COMPILE_FLAGS) -c main.c
+
+file_transfer.o: file_transfer.c file_transfer.h
+	$(COMPILER) $(COMPILE_FLAGS) -c file_transfer.c
+
+clean:
+	rm -f *.o file_transfer
